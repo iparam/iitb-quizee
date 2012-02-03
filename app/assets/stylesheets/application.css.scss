@@ -1,0 +1,62 @@
+@import "bootstrap/reset";
+@import "bootstrap/variables";
+
+// overwrite variables here
+$gridColumns: 16;
+$gridColumnWidth: 50px;
+$gridGutterWidth: 10px;
+
+@import "bootstrap";
+@import "bootstrap/mixins";
+
+@import "bootstrap/scaffolding";
+
+@import "bootstrap/type";
+@import "bootstrap/forms";
+@import "bootstrap/tables";
+@import "bootstrap/patterns";
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ 
+
+ *= require_self
+ *= require_tree .
+*/
+.login-form{
+  padding:5px;
+  label {
+    color:#999;
+    text-shadow: 0 1px 0 rgba(0, 0, 0,0.5);
+    text-align:left;
+    padding-left:5px;
+  } 
+  input:focus{
+  border-color: #16171A;
+-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.3),0 1px 0 rgba(0,0,0,0.2),0 0 12px rgba(255,255,255,0.5);
+-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.3),0 1px 0 rgba(0,0,0,0.2),0 0 12px rgba(255,255,255,0.5);
+ background:#ddd;
+  }
+  input[type="submit"]{
+    margin-top:5px;
+    padding: 7px 7px;
+    background:#ddd;
+    border-color: #BBB #BBB #999;
+    border-style: solid;
+    border-width: 1px;
+    text-shadow: 0 1px #F0F0F0;
+    color: #333!important;
+  }
+}
+
+.dropdown-menu {
+  max-width: 550px;
+}
+  
