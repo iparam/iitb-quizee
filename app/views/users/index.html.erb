@@ -1,22 +1,24 @@
 <div class="add-asset" style="float:right">
-  <%= link_to 'Add User', new_user_path,:class=>"button add" %>
+
+  <%= link_to 'Add User',"#",:class=>"btn addUser" %>
 </div>
 <div class="listing">
-  <table class="listing">
+  <table class="table-striped">
     <thead>
     <tr>
       <th>Email</th>
+      <th>Name</th>
       <th width="40"></th>
     </tr>
     </thead>
     <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email%> </td>
-        <td><%=link_to image_tag("edit_10.png") ,edit_user_path(user)%>
-          <%=link_to image_tag("delete_10.png") ,user,:method=>:delete,:confirm=>"Are You sure you want to delete?" %> </td>
-      </tr>
-    <% end %>
-    </tbody>
+   <%= render @users %>
+   </tbody>
   </table>
 </div>
+<div id="editUserModal" style="display:none">
+</div>
+<% if current_user.is_admin? || current_user.is_super_admin? %>
+<%= render :partial=>'form',:locals=>{:user=>@user} %>
+<% end %>
+

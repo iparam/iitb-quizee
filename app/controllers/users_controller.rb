@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
 	def index
 		@users = User.all
+		@user = User.new if current_user.is_admin? || current_user.is_super_admin?
 	end
 
 	def new
@@ -11,16 +12,23 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(params[:user])
-		if @user.save
-			flash[:notice] = "Successfully created User."
-			redirect_to users_path
-		else
-			render :action => 'new'
+		respond_to do |format|
+		  if @user.save
+		  
+			  flash[:notice] = "Successfully created User."
+			  format.html{redirect_to(users_path,:notice=>"Successfully created User.")}
+			  format.js
+		  else
+        format.html{render :action => 'new'}
+			  format.js{render :template => 'layouts/error',:locals=>{:object=>@user}}
+		  end
 		end
 	end
 
 	def edit
-		if current_user.admin?
+
+
+		if current_user.is_admin? || current_user.is_super_admin? 
 			@user = User.find(params[:id])
 		else
 			@user = current_user
@@ -33,13 +41,18 @@ class UsersController < ApplicationController
 		else
 			@user = current_user
 		end
+    params[:user].delete(:email) if params[:user][:email] != @user.email
 		params[:user].delete(:password) if params[:user][:password].blank?
 		params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
+		respond_to do |format|
 		if @user.update_attributes(params[:user])
 			flash[:notice] = "Successfully updated User."
-			redirect_to users_path
+			format.html{redirect_to(users_path,:notice=>"Successfully updated User.")}
+			format.js
 		else
-			render :action => 'edit'
+			format.html{render :action => 'edit'}
+			format.js{render :template => 'layouts/error',:locals=>{:object=>@user}}
+		end
 		end
 	end
 

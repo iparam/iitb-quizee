@@ -1,0 +1,7 @@
+<tr id="<%= dom_id(user) %>">
+  <td><%= user.email%> </td>
+  <td><%= user.name%> </td>
+  <td><%=link_to image_tag("edit_10.png") ,edit_user_path(user),:class=>"editUser"%>
+  <%=link_to image_tag("delete_10.png") ,user,:method=>:delete,:confirm=>"Are You sure you want to delete?" %> </td>
+</tr>
+
