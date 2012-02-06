@@ -23,6 +23,8 @@ end
 
 gem 'jquery-rails'
 
+gem 'carrierwave'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -36,5 +38,5 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-gem 'pry'
+ gem 'ruby-debug'
+#gem 'pry'

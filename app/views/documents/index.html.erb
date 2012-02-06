@@ -1,0 +1,22 @@
+<h1> List of Uploaded Document </h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name </th>
+      <th> Uploaded By</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @documents.each do |document| %>
+    <tr> 
+      <td>
+       <%= link_to document.name,document_path(document) %> 
+      </td>
+      <td>
+        <%= document.user.name %>
+      </td>
+    </tr>
+  <%end%>
+  </tbody>
+</table>

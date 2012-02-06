@@ -1,0 +1,14 @@
+<%= form_for @document, :html => {:multipart => true} do |f| %>
+  <p>
+    <label>Upload Document</label>
+    <p>
+    <%= f.text_field :name ,:placeholder => "Name of Document" %>
+    </p>
+    <%= f.file_field :asset %>
+    <%= f.hidden_field :asset_cache %>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>
+

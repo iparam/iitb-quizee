@@ -7,8 +7,14 @@ IitbQuizee::Application.routes.draw do
     get '/login' => 'devise/sessions#new'
     get '/logout' => 'devise/sessions#destroy'
   end
+ 
   resources :users
-  root :to => "home#index"
+  root :to => "home#index" 
+  resources :documents do 
+    member do
+      get 'download'
+    end
+  end 
   get "home/dashboard"
 
   # The priority is based upon order of creation:

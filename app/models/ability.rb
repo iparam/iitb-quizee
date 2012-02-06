@@ -5,6 +5,9 @@ class Ability
   if user.super_admin? || user.admin?
 	  can :manage, :all
 	else
+	  can :read ,Document
+	  can :download, Document
+	  cannot [:create,:update,:destroy],Document 
 	end  		
     # Define abilities for the passed in user here. For example:
     #
