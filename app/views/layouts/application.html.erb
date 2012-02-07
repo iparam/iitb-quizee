@@ -2,67 +2,92 @@
 <html>
 <head>
   <title>IitbQuizee</title>
+  <%= stylesheet_link_tag "grid",:media => "all" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= yield :head %>
+  <style type="text/css">
+    .well {
+      min-height: 20px;
+      padding: 19px;
+      margin-bottom: 20px;
+      background-color: whiteSmoke;
+      border: 1px solid #EEE;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    }
+  </style>
 </head>
 <body>
-  <div class="container-fluid">
+  <div class="container-fluid <%= sidebar_present %> container_16" >
  <!-- Topbar
     ================================================== -->
-
-  <div class="topbar-wrapper" style="z-index: 5;">
-    <div class="topbar" data-dropdown="dropdown" >
-      <div class="topbar-inner">
-        <div class="container">
-          <h3><a href="#">IITB Quizzy</a></h3>
-          <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <% if current_user %>
-              <% if current_user.is_admin? || current_user.is_super_admin? %>
-                <li><a href="<%= users_path%>">User</a></li>
-              <% end %>
-                 
-            <% end %>
-           </ul>
-           <ul class="nav secondary-nav">
-           <% if current_user %>
-           <li><a>You are login as <span style="font-size:14px;font-weight:bold;color:white;"> <%=current_user.name || current_user.email  %></span></a></li>
-            <%else %>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle">
-                Have an account? <span style="font-size:14px;font-weight:bold;color:white;">Sign in</span>
-              </a>
-              <ul class="dropdown-menu" id='signin-dropdown'>
-               <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html=>{:class=>"login-form"}) do |f| %>
-              
-                <div><%= f.label :email %><br />
-                <%= f.email_field :email,:id=>"username" %></div>
-
-                <div><%= f.label :password %><br />
-                <%= f.password_field :password,:id=>"password" %></div>
-                <div><%= f.submit "Sign in" %></div>
+  <div class="rows-fluid">
+    <div class="topbar-wrapper" style="z-index: 5;">
+      <div class="topbar" data-dropdown="dropdown" >
+        <div class="topbar-inner">
+          <div class="container">
+            <h3><a href="#">IITB Quizzy</a></h3>
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">About Us</a></li>
+              <% if current_user %>
+                <% if current_user.is_admin? || current_user.is_super_admin? %>
+                  <li><a href="<%= users_path%>">User</a></li>
                 <% end %>
-                <li class="divider"></li>
-                <li><a href="#">Another link</a></li>
-              </ul>
-            </li>
-          </ul>
-          <% end %>
-        </div>
-      </div><!-- /topbar-inner -->
-    </div><!-- /topbar -->
-  </div><!-- /topbar-wrapper -->
-  
-    <div class="content">
-      <div id="flash-messages"></div>
-      <%= yield %>
-     </div>
+                   
+              <% end %>
+             </ul>
+             <ul class="nav secondary-nav">
+             <% if current_user %>
+             <li><a>You are login as <span style="font-size:14px;font-weight:bold;color:white;"> <%=current_user.name || current_user.email  %></span></a></li>
+              <%else %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle">
+                  Have an account? <span style="font-size:14px;font-weight:bold;color:white;">Sign in</span>
+                </a>
+                <ul class="dropdown-menu" id='signin-dropdown'>
+                 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html=>{:class=>"login-form"}) do |f| %>
+                
+                  <div><%= f.label :email %><br />
+                  <%= f.email_field :email,:id=>"username" %></div>
 
-    <div class="sidebar">
-       <%= yield :sidebar%>
+                  <div><%= f.label :password %><br />
+                  <%= f.password_field :password,:id=>"password" %></div>
+                  <div><%= f.submit "Sign in" %></div>
+                  <% end %>
+                  <li class="divider"></li>
+                  <li><a href="#">Another link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <% end %>
+          </div>
+        </div><!-- /topbar-inner -->
+      </div><!-- /topbar -->
+    </div><!-- /topbar-wrapper -->
+    <div class="clear"> </div> 
+ </div> 
+ 
+ <div class="rows-fluid" style="top:50px; position:relative;">
+    <div class="alert <%= flash[:type] %> grid_16" id="flash-message">
+        <%= flash[:message] %> 
     </div>
-  </div>
+    <div class="clear"> </div>
+    <div class="sidebar <%= sidebar_class %>">
+      <%= yield :sidebar %>
+    </div>
+    <div class="content <%= grid_class %>">
+      <%= yield %>
+    </div>
+  <div class="clear"> </div>
+ </div>
+</div>
 </body>
 </html>

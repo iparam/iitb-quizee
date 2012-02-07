@@ -1,22 +1,71 @@
+<%= content_for :head do %>
+  <style type="text/css">
+    div.container-fluid.sidebar > div.content {
+      margin : 0px;
+    }
+    
+    div.content {
+      margin :0px;
+    }
+  </style>
+<%end%>
+
+
 <h1> List of Uploaded Document </h1>
 
 <table class="table">
-  <thead>
-    <tr>
-      <th>Name </th>
-      <th> Uploaded By</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @documents.each do |document| %>
-    <tr> 
-      <td>
-       <%= link_to document.name,document_path(document) %> 
-      </td>
-      <td>
-        <%= document.user.name %>
-      </td>
-    </tr>
-  <%end%>
-  </tbody>
+<thead>
+  <tr>
+    <th>Name </th>
+    <th>Uploaded By</th>
+  </tr>
+</thead>
+
+<tbody class="container">
+  <%= render :partial => "asset" ,:collection => @assets ,:as => :asset %>
+</tbody>
 </table>
+
+<div class="modal" id="modal_container" style="display:none;">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal" data-cursor="true">×</a>
+    <h2 style="color:red;">Error !!!</h2>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-cursor="true">Close</a>
+  </div>
+</div>
+
+
+<!-- TODO write something Better like remote => true for folder instead of the given way -->
+<%= javascript_tag  do %>
+  $(document).ready(function() {
+      $("table.table").delegate("a.folder","click",function(event) {
+          event.preventDefault();
+          $.ajax({
+             "url" : $(this).attr("href"),
+             "type" : "GET",
+             "success" : function(html) {
+                $("tbody.container").html(html);
+             },
+             "error" : function(jqXHR, textStatus, errorThrown) {
+                $("div.modal-body").find('p').html(textStatus ||  errorThrown);
+                $("div#modal_container").modal('show');        
+             }
+          })
+      })
+    
+      $("div.modal").delegate("a","click",function(event) {
+         $("div#modal_container").modal('hide');
+      })
+      
+      $("a[data-cursor=true]").css({"cursor":"pointer"});
+  })
+<%end%>
+
+<%= content_for :sidebar do %>
+  <%= content_tag(:div,"This is War",{:class => "well"}) %>
+ <%end%>

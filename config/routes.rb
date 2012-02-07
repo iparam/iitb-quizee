@@ -8,7 +8,13 @@ IitbQuizee::Application.routes.draw do
     get '/logout' => 'devise/sessions#destroy'
   end
  
+ 
   resources :users
+  resources :folders do
+    member do
+      get 'move'
+    end
+  end
   root :to => "home#index" 
   resources :documents do 
     member do

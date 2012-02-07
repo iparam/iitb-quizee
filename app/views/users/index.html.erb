@@ -19,6 +19,6 @@
 <div id="editUserModal" style="display:none">
 </div>
 <% if current_user.is_admin? || current_user.is_super_admin? %>
-<%= render :partial=>'form',:locals=>{:user=>@user} %>
+  <%= render :partial=>'form',:locals=>{:user=>@user} %>
 <% end %>
 

@@ -7,7 +7,8 @@ class Ability
 	else
 	  can :read ,Document
 	  can :download, Document
-	  cannot [:create,:update,:destroy],Document 
+	  cannot [:create,:update,:destroy],Document
+	  cannot [:create,:update,:destroy,:move],Folder 
 	end  		
     # Define abilities for the passed in user here. For example:
     #
