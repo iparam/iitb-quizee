@@ -1,13 +1,12 @@
 <%= content_for :head do %>
   <style type="text/css">
-    div.container-fluid.sidebar > div.content {
-      margin : 0px;
-    }
-    
-    div.content {
+    div.content.grid_12 {
       margin :0px;
     }
   </style>
+  <%= stylesheet_link_tag "/assets/themes/classic/style.css" %>
+  <%= javascript_include_tag "/assets/jquery.hotkeys.js" %>
+  <%= javascript_include_tag "/assets/jquery.jstree.js" %>
 <%end%>
 
 
@@ -39,10 +38,10 @@
   </div>
 </div>
 
-
 <!-- TODO write something Better like remote => true for folder instead of the given way -->
 <%= javascript_tag  do %>
   $(document).ready(function() {
+      
       $("table.table").delegate("a.folder","click",function(event) {
           event.preventDefault();
           $.ajax({
@@ -63,9 +62,25 @@
       })
       
       $("a[data-cursor=true]").css({"cursor":"pointer"});
+      
+      $("#fileTree").jstree({
+        "json_data"  : {
+          "data" : <%= raw folders_structure %>
+        },
+       "themes" : {
+          "theme" : "classic",
+          "dots" : true,
+          "icons" : true
+       },
+      "plugins" : ["themes",  "json_data" ,"ui"]
+     })
+      
   })
 <%end%>
 
 <%= content_for :sidebar do %>
-  <%= content_tag(:div,"This is War",{:class => "well"}) %>
+  <div class="well" id="fileTree">
+    
+  </div>
+
  <%end%>

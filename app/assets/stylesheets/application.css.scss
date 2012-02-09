@@ -1,4 +1,4 @@
-@import "bootstrap/reset";
+
 @import "bootstrap/variables";
 
 // overwrite variables here
@@ -8,13 +8,13 @@ $gridGutterWidth: 10px;
 
 @import "bootstrap";
 @import "bootstrap/mixins";
-
+@import "bootstrap/reset";
 @import "bootstrap/scaffolding";
 
 @import "bootstrap/type";
 @import "bootstrap/forms";
 @import "bootstrap/tables";
-@import "bootstrap/patterns";
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -73,4 +73,7 @@ box-shadow:inset -5px -5px 15px #efefef,inset 5px 5px 15px #efefef;
 -moz-border-radius: 15px;
 border-radius:10px;
 }
-  
+
+.no-sidebar {
+ display : none;
+}  

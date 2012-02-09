@@ -5,6 +5,7 @@ class DocumentsController < ApplicationController
   def index
     folders   =  Folder.includes(:user)
     documents =  Document.where("folder_id IS ?",nil).includes(:user)
+    @folders = Folder.where("parent_id is ?",nil)
     @assets = folders + documents
   end
   
