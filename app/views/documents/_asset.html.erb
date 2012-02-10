@@ -1,6 +1,16 @@
-<tr> 
+<tr class="<%= cycle("odd", "even") %>"> 
   <td>
-    <%= link_to asset.name,asset,:class => asset.class.name.downcase %> 
+    <img class="<%= asset.class.name.downcase %>_icon" ></span><%= link_to asset.name,asset,:class => asset.class.name.downcase %> 
+  </td>
+
+  <td>
+    <%= asset.created_at %>
+  </td>
+  <td>
+    <%= asset.updated_at %>
+  </td>
+  <td>
+    <#%#= asset.extension %>
   </td>
   <td>
     <%= asset.user.name %>

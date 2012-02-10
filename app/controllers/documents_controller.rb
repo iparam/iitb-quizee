@@ -3,7 +3,7 @@ class DocumentsController < ApplicationController
   authorize_resource
   
   def index
-    folders   =  Folder.includes(:user)
+    folders   =  Folder.where("parent_id is ?", nil).order("folders.id").includes(:user)
     documents =  Document.where("folder_id IS ?",nil).includes(:user)
     @folders = Folder.where("parent_id is ?",nil)
     @assets = folders + documents

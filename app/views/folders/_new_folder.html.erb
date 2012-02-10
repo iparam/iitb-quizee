@@ -1,0 +1,23 @@
+<div class="modal hide fade" id="new_folder"" style="display:none">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal" data-cursor="true">×</a>
+      <h2> Attach A Folder</h2>
+      <div class="alert <%= flash[:type] %>" id="flash-message">
+          <%= flash[:message] %> 
+      </div>
+   </div>
+   <div class="modal-body">
+    <%= form_for folder,:remote => true , :html => {:id => "folder_new"} do |f| %>
+      <p>
+        <%= f.text_field :name ,:placeholder => "Name of Folder" %>
+      </p>
+     <p>
+      <%= f.hidden_field :parent_id ,:value => params[:parent_id] %>
+    <p>
+     <button type="submit" class="btn btn-primary" >Save</button>
+    </p>
+    <% end %>
+  </div>
+</div>  
+
+

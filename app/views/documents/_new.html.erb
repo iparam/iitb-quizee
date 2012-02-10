@@ -1,0 +1,25 @@
+<div class="modal" id="new" style="display:none">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal" data-cursor="true">×</a>
+      <h2> Attach A Document</h2>
+      <div class="alert <%= flash[:type] %>" id="flash-message">
+          <%= flash[:message] %> 
+      </div>
+   </div>
+   <div class="modal-body">
+    <%= form_for document, :remote => true ,:html => {:multipart => true,:id => "new_document"} do |f| %>
+      <p>
+        <%= f.text_field :name ,:placeholder => "Name of Document" %>
+      </p>
+        <%= f.file_field :asset %>
+        <%= f.hidden_field :asset_cache %>
+      </p>   
+      <p>
+       <button type="submit" class="btn btn-primary">Save changes</button>
+      </p>
+    <% end %>
+  </div>
+</div>  
+
+
+

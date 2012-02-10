@@ -5,6 +5,15 @@ class FoldersController < ApplicationController
   end
   
   def create
+    @folder = current_user.folders.create(params[:folder])
+    if @folder.save
+      flash[:type] = "success"
+      flash[:message] = "Folder Successfully Created"
+    else
+      flash[:type] = "error"
+      flash[:message] = "Error!!!"
+    end  
+    render :layout => false
   end
   
   def edit

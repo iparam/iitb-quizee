@@ -5,7 +5,7 @@
 
 $('.addUser').live 'click',(event) =>
   $(".modal").find('form')[0].reset()  
-  $(".modal").modal('show')  
+  $(".modal#new").modal('show')  
   
 $('.close-modal').live 'click',(event) =>
   $(".modal").hide()  
