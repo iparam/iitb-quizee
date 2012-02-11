@@ -133,7 +133,8 @@
 <%= javascript_tag do %>
   $(document).ready(function() {
     $("#folder_new").bind("ajax:success",function(evt, data, status, xhr) {
-      alert("hi");
+       $(".modal").modal('hide');
+       window.location.reload();
     })
     .bind("ajax:error",function(evt, xhr, status, errorThrown) {
       $(".modal").modal('hide');

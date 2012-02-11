@@ -1,0 +1,5 @@
+<% if @folder.errors.empty? %>
+  page.call "window.location.reload();"
+<%end%>
+
+

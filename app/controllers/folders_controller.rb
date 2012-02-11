@@ -9,11 +9,13 @@ class FoldersController < ApplicationController
     if @folder.save
       flash[:type] = "success"
       flash[:message] = "Folder Successfully Created"
+      redirect_to documents_path
     else
       flash[:type] = "error"
       flash[:message] = "Error!!!"
+      render :layout => false
     end  
-    render :layout => false
+    
   end
   
   def edit

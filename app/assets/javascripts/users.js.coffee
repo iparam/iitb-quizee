@@ -8,7 +8,7 @@ $('.addUser').live 'click',(event) =>
   $(".modal#new").modal('show')  
   
 $('.close-modal').live 'click',(event) =>
-  $(".modal").hide()  
+  $(".modal").modal('hide') 
 
 $('.editUser').live 'click',(event) ->
   edit_url = $(this).attr('href')
