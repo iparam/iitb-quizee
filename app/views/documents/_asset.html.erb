@@ -1,4 +1,4 @@
-<tr class="<%= cycle("odd", "even") %>"> 
+<tr id="<%=dom_id(asset)%>" class="<%= cycle("odd", "even") %>"> 
   <td>
     <img class="<%= asset.class.name.downcase %>_icon" ></span><%= link_to asset.name,asset,:class => asset.class.name.downcase %> 
   </td>
@@ -9,9 +9,12 @@
   <td>
     <%= asset.updated_at %>
   </td>
+  <!--
   <td>
     <#%#= asset.extension %>
   </td>
+
+  -->
   <td>
     <%= asset.user.name %>
   </td>

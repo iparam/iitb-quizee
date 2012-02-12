@@ -32,6 +32,8 @@ gem 'acts_as_tree'
 
 # To use Jbuilder templates for JSON
 gem 'jbuilder'
+gem 'remotipart'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -39,5 +41,6 @@ gem 'jbuilder'
 # gem 'capistrano'
 
 # To use debugger
- gem 'ruby-debug19'
-#gem 'pry'
+# gem 'ruby-debug19',:require => 'ruby-debug'
+gem 'pry'
+gem 'pry_debug'

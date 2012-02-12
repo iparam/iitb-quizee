@@ -1,9 +1,10 @@
-<% if @folder.errors.empty? %>
-  page.insert_html :bottom ,'container', :partial => 'documents/asset',:locals => {:asset => @folder}
-  page.call "$('.well').jstree('create_node',$('#<%= dom_id(@folder_id) %>'),"last",<%= folder_data(folder) %>)"
-  page.call "$('.new_folder').reset();" 
+$(".modal").modal('hide');
+<% unless (@last_folder.nil? || @last_folder.empty?)  %>
+  $("tr#<%=dom_id(@last_folder.first) %>").closest('tr').after("<%=escape_javascript(render :partial => "documents/asset" ,:locals => {:asset => @folder })%>")
 <%else%>
-   
+  $("tbody#container").html("<%=escape_javascript(render :partial => "documents/asset" ,:locals => {:asset => @folder })%>")
 <%end%>
+$('.well').jstree('create_node',$("#<%= parent_id(@folder) %>"),"last",<%= raw folder_data(@folder) %>)
 
-page.call "$('#flash-message').replaceWith(<%=content)
+
+

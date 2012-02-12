@@ -26,8 +26,6 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-
-
 		if current_user.is_admin? || current_user.is_super_admin? 
 			@user = User.find(params[:id])
 		else

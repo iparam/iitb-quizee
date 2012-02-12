@@ -3,5 +3,5 @@ $('.addDocument').live 'click',(event) =>
   $(".modal#new").modal('show')  
   
 $('.close-modal').live 'click',(event) =>
-  $(".modal").modal('hide')  
+  $(".modal").modal('hide') 
 

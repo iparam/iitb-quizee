@@ -13,6 +13,7 @@
 // Loads all Bootstrap javascripts
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require bootstrap
 
 // Alternatively, you can load individual modules

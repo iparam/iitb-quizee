@@ -11,6 +11,8 @@ module FolderHelper
             json.attr do |json|
               json.id folder.name
               json.href "#"
+              json.class "clicked"
+              json.data_id folder.id
             end
           end  
           json.children(folder.children) do|json,folder| 
@@ -32,6 +34,8 @@ module FolderHelper
        json.attr do |json|
           json.id folder.name
           json.href "#"
+          json.class "clicked"
+          json.data_id folder.id
        end
      end  
      json.children(folder.children) do|json,folder| 
@@ -39,7 +43,20 @@ module FolderHelper
      end   
       json.state "closed"     
   end  
- 
+
+  def folder_data(folder)
+    Jbuilder.encode do |json|
+      extract_children(json,folder)
+    end  
+  end
+
+  def parent_id(folder)
+    if folder.parent.nil?
+      return "fileTree"
+    else
+      return dom_id(folder.parent)
+    end  
+  end
 #[
 #  {
 #    "attr"  =>  { "id"  => "root" },

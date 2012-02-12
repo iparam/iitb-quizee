@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>IitbQuizee</title>
-  <%= stylesheet_link_tag "grid",:media => "all" %>
+
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -41,7 +41,7 @@
                 <% if current_user.is_admin? || current_user.is_super_admin? %>
                   <li><a href="<%= users_path%>">User</a></li>
                 <% end %>
-                   
+                  <li><a href="<%= documents_path %>">Document</a></li>
               <% end %>
              </ul>
              <ul class="nav secondary-nav">

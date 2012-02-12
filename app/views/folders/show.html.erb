@@ -1,1 +1,1 @@
-<%= render :partial => 'documents/asset' ,:collection => @assets ,:as => :asset %>
+<%= render :partial => "documents/index" ,:locals => {:assets => @assets,:flash => flash ,:parent_id => @parent_id } %>

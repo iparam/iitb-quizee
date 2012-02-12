@@ -13,3 +13,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+# Ignore 'yml' file stored under 'config'.
+/config/*.yml
+
+# Ignore hidden file of linux
+*~

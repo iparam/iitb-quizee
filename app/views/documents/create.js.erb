@@ -1,0 +1,2 @@
+$(".modal").modal('hide')
+$("tbody#container").append("<%= escape_javascript(render :partial => "documents/asset" ,:locals => {:asset => @document}) %>")

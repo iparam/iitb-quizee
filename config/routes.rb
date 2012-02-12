@@ -10,11 +10,18 @@ IitbQuizee::Application.routes.draw do
  
  
   resources :users
+  
   resources :folders do
     member do
       get 'move'
+      get 'tree_structure'
+    end
+
+    collection do
+      get 'folder_tree'
     end
   end
+  
   root :to => "home#index" 
   resources :documents do 
     member do
